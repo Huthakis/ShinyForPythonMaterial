@@ -6,17 +6,17 @@ from pathlib import Path
 from plotnine import ggplot, aes, geom_line, theme, element_text, labs
 
 #%% Data Preparation
-languages = pd.read_csv(Path(__file__).parent /'MostPopularProgrammingLanguages.csv')
-languages['datetime'] = pd.to_datetime(languages['Date'])
-languages.drop(axis=1, columns=['Date'], inplace=True)
+lang = pd.read_csv(Path(__file__).parent /'MostPopularProgrammingLanguages.csv')
+lang['datetime'] = pd.to_datetime(lang['Date'])
+lang.drop(axis=1, columns=['Date'], inplace=True)
 
-languages_long = languages.melt(id_vars='datetime', value_name='popularity', var_name='language').reset_index(drop=True)
+lang_long = lang.melt(id_vars='datetime', value_name='popularity', var_name='language').reset_index(drop=True)
 
 
-date_range_start = np.min(languages_long['datetime'])
-date_range_end = np.max(languages_long['datetime'])
+date_range_start = np.min(lang_long['datetime'])
+date_range_end = np.max(lang_long['datetime'])
 
-language_names = languages_long['language'].unique()
+language_names = lang_long['language'].unique()
 languages_names_dict = {l:l for l in language_names}
 
 #%%
