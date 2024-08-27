@@ -124,3 +124,4 @@ def server(input, output, session):
 
 #%% App
 app = App(app_ui, server, static_assets=app_dir / "start/www")
+ 
